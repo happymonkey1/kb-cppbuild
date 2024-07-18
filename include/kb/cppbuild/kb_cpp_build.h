@@ -67,7 +67,7 @@ struct cppbuild_specification {
     // target platform to build
     target_platform_t m_target_platform = target_platform_t::none;
     // optional name of output build directory
-    option<std::filesystem::path> m_build_directory{};
+    option<std::filesystem::path> m_build_directory = ".kb_cpp_build";
 };
 
 struct executable_specification {
@@ -130,7 +130,7 @@ auto path_rename(
 #define KB_JOIN(sep, ...) ::kb::cppbuild::details::cstr_join(sep, std::vector<const char*>{ __VA_ARGS__ })
 #define KB_CONCAT(...) KB_JOIN("", __VA_ARGS__)
 
-auto init(cppbuild_specification p_specification) noexcept -> void;
+auto init(const cppbuild_specification& p_specification) noexcept -> void;
 [[nodiscard]] auto create_executable(const executable_specification& p_specification) noexcept -> option<cppbuild_error_t>;
 
 #define KB_RUN_CMD(...) \
@@ -181,7 +181,7 @@ auto init(cppbuild_specification p_specification) noexcept -> void;
 #ifdef KB_CPP_BUILD_IMPLEMENTATION
 namespace kb::cppbuild {
 
-auto init(cppbuild_specification p_specification) noexcept -> void {
+auto init(const cppbuild_specification& p_specification) noexcept -> void {
     KB_CORE_ASSERT(p_specification.m_tool_chain != tool_chain_t::none);
 
     s_cppbuild_specification = p_specification;
