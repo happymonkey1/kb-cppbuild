@@ -1,2 +1,5 @@
 vendor/
-.kb_cpp_build/
+.kb_cppbuild/
+.ccls-cache/
+compile_commands.json
+.cache

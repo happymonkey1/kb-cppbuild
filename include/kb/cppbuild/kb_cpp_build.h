@@ -67,7 +67,7 @@ struct cppbuild_specification {
     // target platform to build
     target_platform_t m_target_platform = target_platform_t::none;
     // optional name of output build directory
-    option<std::filesystem::path> m_build_directory = ".kb_cpp_build";
+    option<std::filesystem::path> m_build_directory = ".kb_cppbuild";
 };
 
 struct executable_specification {
@@ -101,12 +101,12 @@ cppbuild_specification s_cppbuild_specification{};
 namespace details {
 
 [[nodiscard]] auto build_executable_command(
-        const executable_specification& p_specification
+    const executable_specification& p_specification
 ) noexcept -> option<std::string>;
 
 [[nodiscard]] auto prefix_project_path(
-        const executable_specification &p_specification,
-        const std::filesystem::path &p_value
+    const executable_specification &p_specification,
+    const std::filesystem::path &p_value
 ) noexcept -> std::filesystem::path;
 
 [[nodiscard]] auto cstr_join(const char* p_sep, const std::vector<const char*>& p_c_strs) noexcept -> std::string;

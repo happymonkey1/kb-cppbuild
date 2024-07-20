@@ -15,7 +15,7 @@ auto main(int argc, char** argv) -> int {
     kb::cppbuild::cppbuild_specification spec{
         .m_tool_chain = kb::cppbuild::tool_chain_t::gcc,
         .m_target_platform = kb::cppbuild::target_platform_t::linux,
-        .m_build_directory = ".kb_cpp_build"
+        .m_build_directory = ".kb_cppbuild"
     };
 
     // Initialize `kb-cppbuild` based on the specification above
